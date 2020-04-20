@@ -1,0 +1,9 @@
+.btn-primary,
+.bg-primary {
+    background-color: teal !important;
+    border-color: teal !important;
+}
+
+.card-block {
+    margin-bottom: 30px;
+}
