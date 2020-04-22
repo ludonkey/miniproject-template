@@ -2,8 +2,8 @@
 
 namespace framework\Controller;
 
-use framework\Entity\Kernel;
-use framework\Entity\Response;
+use framework\Http\Kernel;
+use framework\Http\Response;
 
 abstract class AbstractController
 {
@@ -83,7 +83,7 @@ abstract class AbstractController
             $phpCodeFromView
         );
         // echo variable
-        $phpCodeFromView = preg_replace('/{{(\s*)(\w*)(\s*)}}/', "<?= $$2 ?>", $phpCodeFromView, -1, $varReplacementCount);
+        $phpCodeFromView = preg_replace('/{{(\s*)([\w\->]*)(\s*)}}/', "<?= $$2 ?>", $phpCodeFromView, -1, $varReplacementCount);
         // echo function
         $phpCodeFromView = preg_replace('/{{(\s*)(.*)(\s*)}}/', "<?= $2 ?>", $phpCodeFromView);
 

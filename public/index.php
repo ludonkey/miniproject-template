@@ -1,7 +1,7 @@
 <?php
 
-use framework\Entity\Kernel;
-use framework\Entity\Request;
+use framework\Http\Kernel;
+use framework\Http\Request;
 
 require '../vendor/autoload.php';
 
