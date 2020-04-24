@@ -1,6 +1,6 @@
 <?php
 
-namespace framework\Persistence;
+namespace ludk\Persistence;
 
 interface ObjectRepository
 {

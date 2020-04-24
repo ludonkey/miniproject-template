@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-use framework\Utils\Serializer;
+use ludk\Utils\Serializer;
 
 class Card
 {

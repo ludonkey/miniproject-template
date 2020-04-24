@@ -1,8 +1,8 @@
 <?php
 
-namespace framework\Persistence;
+namespace ludk\Persistence;
 
-use framework\Persistence\ObjectRepository;
+use ludk\Persistence\ObjectRepository;
 
 final class JsonEntityManager implements ObjectManager
 {

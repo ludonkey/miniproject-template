@@ -1,7 +1,7 @@
 <?php
 
-use framework\Http\Kernel;
-use framework\Http\Request;
+use ludk\Http\Kernel;
+use ludk\Http\Request;
 
 require '../vendor/autoload.php';
 

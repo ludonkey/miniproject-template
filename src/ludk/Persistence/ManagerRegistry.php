@@ -1,9 +1,9 @@
 <?php
 
-namespace framework\Persistence;
+namespace ludk\Persistence;
 
-use framework\Persistence\ObjectManager;
-use framework\Persistence\ObjectRepository;
+use ludk\Persistence\ObjectManager;
+use ludk\Persistence\ObjectRepository;
 
 class ManagerRegistry
 {

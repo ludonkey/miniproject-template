@@ -3,9 +3,9 @@
 namespace Controller;
 
 use Entity\Card;
-use framework\Http\Request;
-use framework\Http\Response;
-use framework\Controller\AbstractController;
+use ludk\Http\Request;
+use ludk\Http\Response;
+use ludk\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {

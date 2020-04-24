@@ -1,10 +1,10 @@
 <?php
 
-namespace framework\Http;
+namespace ludk\Http;
 
-use framework\Http\Route;
-use framework\Http\Request;
-use framework\Http\Response;
+use ludk\Http\Route;
+use ludk\Http\Request;
+use ludk\Http\Response;
 use Symfony\Component\Yaml\Yaml;
 
 class Kernel
@@ -50,7 +50,7 @@ class Kernel
         $this->routes = $routes;
     }
 
-    public function getRouteFromRequest(Request $request): Route {
+    public function getRouteFromRequest(Request $request): ?Route {
         $currentPath = $request->basePath;
         foreach ($this->routes as $oneRoute) {
             if ($oneRoute->path == $currentPath) {
@@ -60,7 +60,7 @@ class Kernel
         return null;
     }
 
-    public function getRouteFromName(string $name): Route {
+    public function getRouteFromName(string $name): ?Route {
         if (array_key_exists($name, $this->routes)) {
             return $this->routes[$name];
         }

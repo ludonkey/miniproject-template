@@ -1,9 +1,9 @@
 <?php
 
-namespace framework\Utils;
+namespace ludk\Utils;
 
 use ReflectionProperty;
-use framework\Persistence\ManagerRegistry;
+use ludk\Persistence\ManagerRegistry;
 
 trait Serializer
 {

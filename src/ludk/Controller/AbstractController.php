@@ -1,10 +1,10 @@
 <?php
 
-namespace framework\Controller;
+namespace ludk\Controller;
 
-use framework\Http\Kernel;
-use framework\Http\Response;
-use framework\Persistence\ORM;
+use ludk\Http\Kernel;
+use ludk\Http\Response;
+use ludk\Persistence\ORM;
 
 abstract class AbstractController
 {
