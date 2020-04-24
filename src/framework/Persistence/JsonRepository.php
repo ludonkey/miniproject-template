@@ -1,17 +1,21 @@
 <?php
 
-namespace framework\Repository;
+namespace framework\Persistence;
 
-use framework\Repository\EntityRepository;
+use ReflectionClass;
 
-class JsonRepository implements EntityRepository
+class JsonRepository implements ObjectRepository
 {
     private string $class;
     private string $idFieldName;
     private array $objectsById;
 
-    public function __construct(string $class, string $jsonFile, string $idFieldName = "id")
+    public function __construct(string $class, string $jsonFile = null, string $idFieldName = "id")
     {
+        if (empty($jsonFile)) {
+            $reflection = new ReflectionClass($class);;
+            $jsonFile = __DIR__ . '/../../../Resources/' . $reflection->getShortName() . '.json';
+        }
         $this->objectsById = array();
         $this->class = $class;
         $this->idFieldName = $idFieldName;
@@ -19,9 +23,14 @@ class JsonRepository implements EntityRepository
         $jsonArray = json_decode($jsonStr, true);
         foreach ($jsonArray as $oneObjectJson) {
             $newObj = new $this->class();
-            $newObj->LoadFromJson($oneObjectJson);
+            $newObj->loadFromJson($oneObjectJson);
             $this->objectsById[$newObj->{$this->idFieldName}] = $newObj;
         }
+    }
+
+    public function getClassName()
+    {
+        return $this->class;
     }
 
     public function find($id)

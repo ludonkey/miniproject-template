@@ -1,0 +1,19 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+homepage:
+    path: /
+    controller: Controller\HomeController:display
+
+search:
+    path: /search
+    controller: Controller\HomeController:search
+
+login:
+    path: /login
+    controller: Controller\LoginController:display
+
+register:
+    path: /register
+    controller: Controller\LoginController:register

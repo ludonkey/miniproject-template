@@ -4,11 +4,9 @@ namespace Entity;
 
 use framework\Utils\Serializer;
 
-class Card
+class Image
 {
     public int $id;
-    public string $title;
-    public string $text;
-    public Image $image;
+    public string $url;
     use Serializer;
 }

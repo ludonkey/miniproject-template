@@ -22,14 +22,14 @@
                 $i = 0;
                 foreach ($cards as $oneCard) {
                 ?>
-                    <div class="card card-block">
-                        <img src="{{oneCard->imageUrl}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{oneCard->title}}</h5>
-                            <p class="card-text">{{oneCard->text}}</p>
-                            <a href="#{{oneCard->id}}" class="btn btn-primary">Go somewhere</a>
-                        </div>
+                <div class="card card-block">
+                    <img src="{{oneCard->image->url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{oneCard->title}}</h5>
+                        <p class="card-text">{{oneCard->text}}</p>
+                        <a href="#{{oneCard->id}}" class="btn btn-primary">Go somewhere</a>
                     </div>
+                </div>
                 <?php
                     $i++;
                     if ($i % 2 == 0) {

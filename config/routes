@@ -1,6 +1,0 @@
-[ROUTES]
-
-/ = Controller\HomeController:display
-/login = Controller\LoginController:display
-/register = Controller\LoginController:register
-/search = Controller\SearchController:search

@@ -1,9 +1,10 @@
 <?php
 
-namespace framework\Repository;
+namespace framework\Persistence;
 
-interface EntityRepository
+interface ObjectRepository
 {
+    public function getClassName();
     public function find($id);
     public function findAll();
     public function findBy(array $criteria = [], array $orderBy = [], int $limit = -1, int $offset = 0);
