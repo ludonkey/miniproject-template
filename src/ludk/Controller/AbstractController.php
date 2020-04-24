@@ -8,15 +8,15 @@ use ludk\Persistence\ORM;
 
 abstract class AbstractController
 {
-    private static ORM $orm;
     private $globalVariables;
+    private $orm;
 
-    public function getOrm()
+    public function getOrm():ORM
     {
-        if (empty(AbstractController::$orm)) {
-            AbstractController::$orm = new ORM();
+        if (empty($this->orm)) {
+            $this->orm = new ORM();
         }
-        return AbstractController::$orm;
+        return $this->orm;
     }
 
     public function setGlobalVariables(array $globalVariables)
@@ -42,7 +42,7 @@ abstract class AbstractController
     {
         $redirectingResponse = new Response();
         $redirectingResponse->setStatusCode($status);
-        $redirectingResponse->setHeaders(array("Location", $url));
+        $redirectingResponse->setHeaders(array("Location" => $url));
         return $redirectingResponse;
     }
 

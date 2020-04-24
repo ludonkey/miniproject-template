@@ -10,6 +10,18 @@ search:
     path: /search
     controller: Controller\HomeController:search
 
+remove:
+    path: /remove
+    controller: Controller\HomeController:remove
+
+create:
+    path: /create
+    controller: Controller\HomeController:create
+
+update:
+    path: /update
+    controller: Controller\HomeController:update
+
 login:
     path: /login
     controller: Controller\LoginController:display
@@ -17,3 +29,7 @@ login:
 register:
     path: /register
     controller: Controller\LoginController:register
+
+reset:
+    path: /reset
+    controller: Controller\HomeController:reset

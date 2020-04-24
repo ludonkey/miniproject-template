@@ -7,14 +7,17 @@ use ludk\Persistence\ObjectRepository;
 
 class ManagerRegistry
 {
-    private static ObjectManager $manager;
+
+    public static function reset(): void {
+        unset($_SESSION['OBJECT_MANAGER']);
+    }
 
     public static function getManager(): ObjectManager
     {
-        if (empty(self::$manager)) {
-            self::$manager = new JsonEntityManager();
+        if (empty($_SESSION['OBJECT_MANAGER'])) {
+            $_SESSION['OBJECT_MANAGER'] = new JsonEntityManager();
         }
-        return self::$manager;
+        return $_SESSION['OBJECT_MANAGER'];
     }
 
     public static function getRepository($classname): ObjectRepository

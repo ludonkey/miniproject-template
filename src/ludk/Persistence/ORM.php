@@ -7,6 +7,11 @@ use ludk\Persistence\ObjectRepository;
 
 class ORM
 {
+    public function reset(): void
+    {
+        ManagerRegistry::reset();
+    }
+
     public function getManager(): ObjectManager
     {
         return ManagerRegistry::getManager();

@@ -17,6 +17,7 @@ class Kernel
 
     public function __construct()
     {
+        session_start();
         $this->setEnv($_SERVER['APP_ENV'] ?? "");
         $this->setRoutes(Yaml::parseFile(Kernel::getProjectDir() . 'config' . DIRECTORY_SEPARATOR . 'routes.yaml'));
         Kernel::$currentKernel = $this;

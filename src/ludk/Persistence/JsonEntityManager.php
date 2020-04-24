@@ -45,14 +45,23 @@ final class JsonEntityManager implements ObjectManager
     public function flush(): void
     {
         foreach ($this->allDataToAddWhenFlush as $oneObject) {
+            if (empty($oneObject)) {
+                continue;
+            }
             $this->createOrUpdate($oneObject);
         }
         $this->allDataToAddWhenFlush = array();
         foreach ($this->allDataToRemoveWhenFlush as $oneObject) {
+            if (empty($oneObject)) {
+                continue;
+            }
             $this->removeEntityIfExists($oneObject, false);
         }
         $this->allDataToRemoveWhenFlush = array();
         foreach ($this->allDataToRemoveCascadeWhenFlush as $oneObject) {
+            if (empty($oneObject)) {
+                continue;
+            }
             $this->removeEntityIfExists($oneObject, true);
         }
         $this->allDataToRemoveCascadeWhenFlush = array();
