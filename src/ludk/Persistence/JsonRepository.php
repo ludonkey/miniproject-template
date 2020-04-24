@@ -7,10 +7,9 @@ use ReflectionClass;
 class JsonRepository implements ObjectRepository
 {
     private string $class;
-    private string $idFieldName;
     private array $objectsById;
 
-    public function __construct(string $class, string $jsonFile = null, string $idFieldName = "id")
+    public function __construct(string $class, string $jsonFile = null)
     {
         if (empty($jsonFile)) {
             $reflection = new ReflectionClass($class);;
@@ -18,13 +17,12 @@ class JsonRepository implements ObjectRepository
         }
         $this->objectsById = array();
         $this->class = $class;
-        $this->idFieldName = $idFieldName;
         $jsonStr = file_get_contents($jsonFile);
         $jsonArray = json_decode($jsonStr, true);
         foreach ($jsonArray as $oneObjectJson) {
             $newObj = new $this->class();
             $newObj->loadFromJson($oneObjectJson);
-            $this->objectsById[$newObj->{$this->idFieldName}] = $newObj;
+            $this->objectsById[$newObj->id] = $newObj;
         }
     }
 
@@ -69,6 +67,19 @@ class JsonRepository implements ObjectRepository
     public function count(array $criteria = [])
     {
         return count($this->findBy($criteria));
+    }
+
+    public function create(&$object) {
+        $object->id = max(array_keys($this->objectsById)) + 1;
+        $this->objectsById[$object->id] = $object;
+    }
+
+    public function update(&$object) {
+        $this->objectsById[$object->id] = $object;
+    }
+
+    public function remove(&$object) {
+        unset($this->objectsById[$object->id]);
     }
 
     private static function isObjectValid($obj, $criteria)

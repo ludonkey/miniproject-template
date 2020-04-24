@@ -19,6 +19,7 @@
         <div class="row masonry-grid">
             <div class="col-md-6 col-lg-4 masonry-column">
                 <?php
+                $oneColumnItemNumber = ceil(count($cards) / 3);
                 $i = 0;
                 foreach ($cards as $oneCard) {
                 ?>
@@ -32,7 +33,7 @@
                 </div>
                 <?php
                     $i++;
-                    if ($i % 2 == 0) {
+                    if ($i % $oneColumnItemNumber == 0) {
                         echo '</div>';
                         echo '<div class="col-md-6 col-lg-4 masonry-column">';
                     }
