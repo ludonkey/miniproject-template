@@ -1,6 +1,6 @@
 {
     "require": {
-        "symfony/yaml": "^5.0"
+        "ludonkey/tinymvc": "@dev"
     },
     "autoload": {
         "classmap": [

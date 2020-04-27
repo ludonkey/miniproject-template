@@ -4,8 +4,49 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1613356abe12dbf4c754ef01f4435fb",
+    "content-hash": "b26f755054585a0d9a37d36551976720",
     "packages": [
+        {
+            "name": "ludonkey/tinymvc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ludonkey/tinymvc.git",
+                "reference": "8f20005e84c873a47cfbf946bfe6b24b91f31b4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ludonkey/tinymvc/zipball/8f20005e84c873a47cfbf946bfe6b24b91f31b4b",
+                "reference": "8f20005e84c873a47cfbf946bfe6b24b91f31b4b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4.0",
+                "symfony/yaml": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ludk\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Quesada",
+                    "email": "contact@ludk.io"
+                }
+            ],
+            "description": "A  light weight MVC implementation",
+            "homepage": "https://github.com/ludonkey/tinymvc",
+            "time": "2020-04-27T13:22:05+00:00"
+        },
         {
             "name": "symfony/polyfill-ctype",
             "version": "v1.15.0",
@@ -155,7 +196,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ludonkey/tinymvc": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
