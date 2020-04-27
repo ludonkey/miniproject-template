@@ -2,37 +2,43 @@
 
 namespace ludk\Http;
 
+use ludk\Http\ParameterBag;
+
 class Request
 {
-    // incoming headers (User-Agent, etc)
-    public $headers;
-
     // GET or POST or HEAD ...
     public $method;
 
     // http://localhost/web/index.php?var=1 contains '/web'
     public $basePath;
 
+    // incoming headers (User-Agent, etc)
+    public ParameterBag $headers;
+
     // $_POST parameters
-    public $request;
+    public ParameterBag $request;
 
     // $_GET parameters
-    public $query;
+    public ParameterBag $query;
 
     // $_SERVER infos
-    public $server;
+    public ParameterBag $server;
+
+    // $_COOKIE
+    public ParameterBag $cookies;
 
     public function __construct()
     {
-        $this->initialize($_GET, $_POST, $_SERVER);
+        $this->initialize($_GET, $_POST, $_SERVER, $_COOKIE);
     }
 
-    public function initialize(array $query = [], array $request = [], array $server = [])
+    public function initialize(array $query = [], array $request = [], array $server = [], array $cookies = [])
     {
-        $this->query = $query;
-        $this->request = $request;
-        $this->server = $server;
-        $this->headers = getallheaders();
+        $this->query = new ParameterBag($query);
+        $this->request = new ParameterBag($request);
+        $this->server = new ParameterBag($server);
+        $this->cookies = new ParameterBag($cookies);
+        $this->headers = new ParameterBag(getallheaders());
         $this->basePath = parse_url($server['REQUEST_URI'], PHP_URL_PATH);
         $this->method = $server['REQUEST_METHOD'];
     }

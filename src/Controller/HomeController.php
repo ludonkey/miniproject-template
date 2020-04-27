@@ -33,7 +33,7 @@ class HomeController extends AbstractController
     {
         $manager = $this->getOrm()->getManager();
         $cardRepository = $this->getOrm()->getRepository(Card::class);
-        $cardToDelete = $cardRepository->find($request->query['id']);
+        $cardToDelete = $cardRepository->find($request->query->get('id'));
         if (!empty($cardToDelete)) {
             $manager->remove($cardToDelete);
             $manager->flush();
@@ -45,11 +45,12 @@ class HomeController extends AbstractController
     {
         $manager = $this->getOrm()->getManager();
         $newImage = new Image();
-        $newImage->url = $request->query['url'];
+        $newImage->url = $request->query->get('url', '');
         $newCard = new Card();
-        $newCard->title = $request->query['title'];
-        $newCard->text = $request->query['text'];
+        $newCard->title = $request->query->get('title', 'empty title');
+        $newCard->text = $request->query->get('text', 'empty text');
         $newCard->image = $newImage;
+
         $manager->persist($newCard);
         $manager->flush();
         return $this->redirectToRoute('homepage');
@@ -58,18 +59,13 @@ class HomeController extends AbstractController
     public function update(Request $request): Response
     {
         $manager = $this->getOrm()->getManager();
-        $cardRepository = $this->getOrm()->getRepository(Card::class);    
-        $cardToUpdate = $cardRepository->find($request->query['id']);
+        $cardRepository = $this->getOrm()->getRepository(Card::class);
+        $cardToUpdate = $cardRepository->find($request->query->get('id'));
 
-        if (array_key_exists('title', $request->query)) {
-            $cardToUpdate->title = $request->query['title'];
-        }
-        if (array_key_exists('text', $request->query)) {
-            $cardToUpdate->text = $request->query['text'];
-        }
-        if (array_key_exists('url', $request->query)) {
-            $cardToUpdate->image->url = $request->query['url'];
-        }
+        $cardToUpdate->title = $request->query->get('title', $cardToUpdate->title);
+        $cardToUpdate->text = $request->query->get('text', $cardToUpdate->text);
+        $cardToUpdate->image->url = $request->query->get('url', $cardToUpdate->image->url);
+
         $manager->persist($cardToUpdate);
         $manager->flush();
         return $this->redirectToRoute('homepage');
@@ -77,7 +73,7 @@ class HomeController extends AbstractController
 
     public function search(Request $request): Response
     {
-        $search = $request->query["search"];
+        $search = $request->query->get('search');
         $cardRepository = $this->getOrm()->getRepository(Card::class);
         $cards = $cardRepository->findBy(array("text" => $search));
         $data = array(
