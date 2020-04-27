@@ -9,14 +9,12 @@ class JsonRepository implements ObjectRepository
     private string $class;
     private array $objectsById;
 
-    public function __construct(string $class, string $jsonFile = null)
+    public function __construct(string $class, string $resourcesDirPath)
     {
-        if (empty($jsonFile)) {
-            $reflection = new ReflectionClass($class);;
-            $jsonFile = __DIR__ . '/../../../Resources/' . $reflection->getShortName() . '.json';
-        }
         $this->objectsById = array();
         $this->class = $class;
+        $reflection = new ReflectionClass($class);
+        $jsonFile = $resourcesDirPath . DIRECTORY_SEPARATOR . $reflection->getShortName() . '.json';
         $jsonStr = file_get_contents($jsonFile);
         $jsonArray = json_decode($jsonStr, true);
         foreach ($jsonArray as $oneObjectJson) {
@@ -69,16 +67,19 @@ class JsonRepository implements ObjectRepository
         return count($this->findBy($criteria));
     }
 
-    public function create(&$object) {
+    public function create(&$object)
+    {
         $object->id = max(array_keys($this->objectsById)) + 1;
         $this->objectsById[$object->id] = $object;
     }
 
-    public function update(&$object) {
+    public function update(&$object)
+    {
         $this->objectsById[$object->id] = $object;
     }
 
-    public function remove(&$object) {
+    public function remove(&$object)
+    {
         unset($this->objectsById[$object->id]);
     }
 

@@ -11,10 +11,13 @@ abstract class AbstractController
     private $globalVariables;
     private $orm;
 
-    public function getOrm():ORM
+    public function getOrm($resourcesDirPath = null): ORM
     {
         if (empty($this->orm)) {
-            $this->orm = new ORM();
+            if (empty($resourcesDirPath)) {
+                $resourcesDirPath = $_SERVER["DOCUMENT_ROOT"] . '/../Resources';
+            }
+            $this->orm = new ORM($resourcesDirPath);
         }
         return $this->orm;
     }
@@ -91,7 +94,7 @@ abstract class AbstractController
             $phpCodeFromView
         );
         // echo variable
-        $phpCodeFromView = preg_replace('/{{(\s*)([\w\->]*)(\s*)}}/', '<?= $$2 ?>',$phpCodeFromView,-1, $varReplacementCount);
+        $phpCodeFromView = preg_replace('/{{(\s*)([\w\->]*)(\s*)}}/', '<?= $$2 ?>', $phpCodeFromView, -1, $varReplacementCount);
         // echo url function
         $phpCodeFromView = preg_replace('/{{(\s*)url(.*)(\s*)}}/', '<?= $this->generateUrl$2 ?>', $phpCodeFromView);
         // echo function

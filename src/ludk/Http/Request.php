@@ -27,12 +27,7 @@ class Request
     // $_COOKIE
     public ParameterBag $cookies;
 
-    public function __construct()
-    {
-        $this->initialize($_GET, $_POST, $_SERVER, $_COOKIE);
-    }
-
-    public function initialize(array $query = [], array $request = [], array $server = [], array $cookies = [])
+    public function __construct(array $query = [], array $request = [], array $server = [], array $cookies = [])
     {
         $this->query = new ParameterBag($query);
         $this->request = new ParameterBag($request);

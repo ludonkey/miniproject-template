@@ -7,6 +7,11 @@ use ludk\Persistence\ObjectRepository;
 
 class ORM
 {
+    public function __construct($resourcesDirPath)
+    {
+        ManagerRegistry::SetResourcesDirPath($resourcesDirPath);
+    }
+
     public function reset(): void
     {
         ManagerRegistry::reset();

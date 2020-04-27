@@ -11,19 +11,21 @@ final class JsonEntityManager implements ObjectManager
     private $allDataToAddWhenFlush;
     private $allDataToRemoveWhenFlush;
     private $allDataToRemoveCascadeWhenFlush;
+    private $resourcesDirPath;
 
-    public function __construct()
+    public function __construct($resourcesDirPath)
     {
         $this->allRepos = array();
         $this->allDataToAddWhenFlush = array();
         $this->allDataToRemoveWhenFlush = array();
         $this->allDataToRemoveCascadeWhenFlush = array();
+        $this->resourcesDirPath = $resourcesDirPath;
     }
 
     public function getRepository($className): ObjectRepository
     {
         if (!array_key_exists($className, $this->allRepos)) {
-            $this->allRepos[$className] = new JsonRepository($className);
+            $this->allRepos[$className] = new JsonRepository($className, $this->resourcesDirPath);
         }
         return $this->allRepos[$className];
     }
@@ -67,7 +69,8 @@ final class JsonEntityManager implements ObjectManager
         $this->allDataToRemoveCascadeWhenFlush = array();
     }
 
-    private function createOrUpdate(&$oneObject) {
+    private function createOrUpdate(&$oneObject)
+    {
         $className = get_class($oneObject);
         $id = isset($oneObject->id) ? $oneObject->id : -1;
         if ($id >= 0) {
@@ -84,7 +87,8 @@ final class JsonEntityManager implements ObjectManager
         }
     }
 
-    private function createEntity(&$oneObject) {
+    private function createEntity(&$oneObject)
+    {
         $className = get_class($oneObject);
         foreach ($oneObject as $pName => &$pValue) {
             $reflection = new ReflectionProperty($className, $pName);
@@ -96,7 +100,8 @@ final class JsonEntityManager implements ObjectManager
         $this->getRepository($className)->create($oneObject);
     }
 
-    private function updateEntity(&$oneObject) {
+    private function updateEntity(&$oneObject)
+    {
         $className = get_class($oneObject);
         foreach ($oneObject as $pName => &$pValue) {
             $reflection = new ReflectionProperty($className, $pName);
@@ -108,7 +113,8 @@ final class JsonEntityManager implements ObjectManager
         $this->getRepository($className)->update($oneObject);
     }
 
-    private function removeEntityIfExists($oneObject, $cascade) {
+    private function removeEntityIfExists($oneObject, $cascade)
+    {
         $className = get_class($oneObject);
         $id = $oneObject->id;
         if ($id >= 0) {
@@ -120,7 +126,8 @@ final class JsonEntityManager implements ObjectManager
         }
     }
 
-    private function removeEntity(&$oneObject, $cascade) {
+    private function removeEntity(&$oneObject, $cascade)
+    {
         $className = get_class($oneObject);
         if ($cascade) {
             foreach ($oneObject as $pName => &$pValue) {
@@ -133,5 +140,4 @@ final class JsonEntityManager implements ObjectManager
         }
         $this->getRepository($className)->remove($oneObject);
     }
-
 }
