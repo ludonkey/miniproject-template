@@ -1,31 +1,27 @@
 homepage:
-    path: /
-    controller: Controller\HomeController:display
-
-search:
-    path: /search
-    controller: Controller\HomeController:search
-
-remove:
-    path: /remove
-    controller: Controller\HomeController:remove
-
-create:
-    path: /create
-    controller: Controller\HomeController:create
-
-update:
-    path: /update
-    controller: Controller\HomeController:update
+  path: /
+  controller: Controller\HomeController:display
 
 login:
-    path: /login
-    controller: Controller\LoginController:display
+  path: /login
+  controller: Controller\AuthController:login
+
+logout:
+  path: /logout
+  controller: Controller\AuthController:logout
 
 register:
-    path: /register
-    controller: Controller\LoginController:register
+  path: /register
+  controller: Controller\AuthController:register
+
+create:
+  path: /new
+  controller: Controller\ContentController:create
+
+remove:
+  path: /remove
+  controller: Controller\ContentController:remove
 
 reset:
-    path: /reset
-    controller: Controller\HomeController:reset
+  path: /reset
+  controller: Controller\HomeController:reset

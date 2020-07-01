@@ -7,3 +7,18 @@
 .card-block {
     margin-bottom: 30px;
 }
+
+#signup-btn {
+    background-color: #e83e8c;
+    border-color: transparent;
+}
+
+#new-btn {
+    background-color: #e83e8c;
+    border-color: transparent;
+    font-weight: bold;
+}
+
+#login {
+    color: black;
+}

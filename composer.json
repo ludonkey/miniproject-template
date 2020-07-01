@@ -1,10 +1,11 @@
 {
-    "require": {
-        "ludonkey/tinymvc": "@dev"
-    },
     "autoload": {
         "classmap": [
-            "src/"
+            "src/Controller/",
+            "src/Entity/"
         ]
+    },
+    "require": {
+        "ludonkey/tinymvc": "@dev"
     }
 }

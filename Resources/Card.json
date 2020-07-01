@@ -1,31 +1,43 @@
 [{
     "id": 1,
-    "title": "Card title",
+    "title": "Card title 1",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 1.",
-    "image": 1
+    "link": "http://www.ludk.io",
+    "image": 1,
+    "user": 1
 }, {
     "id": 2,
-    "title": "Card title",
+    "title": "Card title 2",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 2.",
-    "image": 2
+    "link": "http://www.google.com",
+    "image": 2,
+    "user": 1
 }, {
     "id": 3,
-    "title": "Card title",
+    "title": "Card title 3",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 3.",
-    "image": 3
+    "link": "http://www.google.com",
+    "image": 3,
+    "user": 2
 }, {
     "id": 4,
-    "title": "Card title",
+    "title": "Card title 4",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 4.",
-    "image": 4
+    "link": "http://www.ludk.io",
+    "image": 4,
+    "user": 2
 }, {
     "id": 5,
-    "title": "Card title",
+    "title": "Card title 5",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 5.",
-    "image": 5
+    "link": "http://www.ludk.io",
+    "image": 5,
+    "user": 3
 }, {
     "id": 6,
-    "title": "Card title",
+    "title": "Card title 6",
     "text": "Some quick example text to build on the card title and make up the bulk of the card's content 6.",
-    "image": 6
+    "link": "http://www.ludk.io",
+    "image": 6,
+    "user": 4
 }]

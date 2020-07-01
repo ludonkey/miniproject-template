@@ -23,14 +23,17 @@
                 $i = 0;
                 foreach ($cards as $oneCard) {
                 ?>
-                <div class="card card-block">
-                    <img src="{{oneCard->image->url}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{oneCard->title}}</h5>
-                        <p class="card-text">{{oneCard->text}}</p>
-                        <a href="#{{oneCard->id}}" class="btn btn-primary">Go somewhere</a>
+                    <div class="card card-block">
+                        <img src="{{oneCard->image->url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{oneCard->title}}</h5>
+                            <p class="card-text">{{oneCard->text}}</p>
+                            <a href="{{oneCard->link}}" class="btn btn-primary">Go somewhere</a>
+                            <?php if ($app_session->has('user') && $app_session->get('user')->id == $oneCard->user->id) { ?>
+                                <a href="{{ url('remove') }}?id={{oneCard->id}}" class="btn btn-primary">Delete</a>
+                            <?php } ?>
+                        </div>
                     </div>
-                </div>
                 <?php
                     $i++;
                     if ($i % $oneColumnItemNumber == 0) {
